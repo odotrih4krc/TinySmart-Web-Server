@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>ESP32 LED Control</title>
+    <style>
+        body { text-align: center; padding: 20px; }
+        .card { margin: 10px; }
+        .navbar { margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="#">
+            <img src="https://via.placeholder.com/30" alt="Logo" class="d-inline-block align-top">
+            TinySmart Dashboard
+        </a>
+    </nav>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">LIGHT 1</h5>
+                        <button class="btn btn-primary" onclick="toggleLED(0)">Toggle LIGHT 1</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">LIGHT 2</h5>
+                        <button class="btn btn-primary" onclick="toggleLED(1)">Toggle LIGHT 2</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">LIGHT 3</h5>
+                        <button class="btn btn-primary" onclick="toggleLED(2)">Toggle LIGHT 3</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function toggleLED(ledIndex) {
+            fetch('/toggle?led=' + ledIndex)
+                .then(response => response.text())
+                .then(data => console.log(data));
+        }
+    </script>
+</body>
+</html>
